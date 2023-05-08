@@ -460,7 +460,29 @@ void saveDataSensorToSDcard_task(void *parameters)
 /*------------------------------------ MAIN_APP ------------------------------------*/
 
 void app_main(void)
-{
+{ 
+    //**** SMART_ CONFIG************/
+    button_t* BUTTON_1 = malloc(sizeof(button_t));// khoi tao 1 button
+    BUTTON_1->gpio = button_1;
+    BUTTON_1->internal.pressed_time = 0;
+    gpio_set_direction(BUTTON_1->gpio, GPIO_MODE_INPUT);
+    double time = 0;
+    while(1){
+    if(gpio_get_level(BUTTON_1->gpio) == 0)
+    {
+        BUTTON_1->internal.pressed_time +=1;
+        vTaskDelay(1000 / portTICK_PERIOD_MS);
+   // if( esp_timer_get_time() - time >= 3000/portTICK_PERIOD_MS  )
+   if(BUTTON_1->internal.pressed_time > 3)
+    {
+        printf( " start config smart wifi\n");
+        //  ESP_ERROR_CHECK( nvs_flash_init() );
+        //  initialise_wifi();
+      //xTaskCreate(&smartconfig_example_task, "smartconfig_example_task",1024, NULL,1,NULL);
+      // printf("Enter smartconfig\n");
+    }
+    }
+}
     // Allow other core to finish initialization
     vTaskDelay(pdMS_TO_TICKS(200)); 
 
