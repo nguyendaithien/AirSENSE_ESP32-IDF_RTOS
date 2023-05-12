@@ -70,6 +70,8 @@ typedef enum {
  * @param state  Button action (new state)
  */
 typedef void (*button_event_cb_t)(button_t *btn, button_state_t state);
+button_press( uint8_t button);
+check_button_n( uint8_t button , int n);
 
 /**
  * Button descriptor struct

@@ -4,7 +4,8 @@
         "sht3x.h": "c",
         "i2cdev.h": "c",
         "config.h": "c",
-        "sdkconfig.h": "c"
+        "sdkconfig.h": "c",
+        "freertos.h": "c"
     },
     "C_Cpp.errorSquiggles": "Disabled",
     "idf.toolsPathWin": "C:\\Users\\Admin\\.espressif",

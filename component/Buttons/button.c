@@ -179,3 +179,26 @@ esp_err_t button_done(button_t *btn)
     CHECK(esp_timer_start_periodic(timer, POLL_TIMEOUT_US));
     return res;
 }
+bool button_press( uint8_t button)
+{
+    return (gpio_get_level(button) != BUTTON_RELEASED) ? true : false;
+}
+// ham nhan nut an n giay
+bool check_button_n( uint8_t button, int n )
+{
+    uint32_t time_end = 0;
+     uint32_t time_start = 0;
+    if( gpio_get_level( button) == 0)
+    {
+        time_start = esp_timer_get_time();
+        if( gpio_get_level( button) == 1 )
+        {
+            time_end = esp_timer_get_time();
+        if(time_end - time_start >= (n*1000))
+        {
+            return true;
+    }
+        }
+    }
+    return false;
+}
